@@ -1,0 +1,8 @@
+*
+!*/
+!*.R
+!*.txt
+!*.sh
+!.gitignore
+!SraRunTable*
+cre_*.txt

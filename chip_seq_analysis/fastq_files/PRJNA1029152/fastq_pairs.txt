@@ -1,0 +1,4 @@
+fastq_files/PRJNA1029152/H3K4me1_SRR26412353_1.fastq.gz	fastq_files/PRJNA1029152/H3K4me1_SRR26412353_2.fastq.gz
+fastq_files/PRJNA1029152/H3K9me1_SRR26412345_1.fastq.gz	fastq_files/PRJNA1029152/H3K9me1_SRR26412345_2.fastq.gz
+fastq_files/PRJNA1029152/input_SRR26412344_1.fastq.gz	fastq_files/PRJNA1029152/input_SRR26412344_2.fastq.gz
+fastq_files/PRJNA1029152/input_SRR26412352_1.fastq.gz	fastq_files/PRJNA1029152/input_SRR26412352_2.fastq.gz
