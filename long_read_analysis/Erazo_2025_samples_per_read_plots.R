@@ -3,10 +3,10 @@
 # Load required packages and functions
 library(Rsamtools)
 library(dplyr)
-source("../auxillary_scripts/filter_bam_for_regions.R")
-source("../auxillary_scripts/modkit_functions.R")
-source("../auxillary_scripts/ggplot_functions.R")
-source("../auxillary_scripts/methylartist_locus_plot.R")
+source("../helper_scripts/filter_bam_for_regions.R")
+source("../helper_scripts/modkit_functions.R")
+source("../helper_scripts/ggplot_functions.R")
+source("../helper_scripts/methylartist_locus_plot.R")
 
 # Set path to chlamy genome FASTA
 chlamy_fasta = "../genome_files/CC2937_T2T.fa"

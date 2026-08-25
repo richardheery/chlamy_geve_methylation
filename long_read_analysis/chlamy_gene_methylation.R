@@ -2,7 +2,7 @@
 
 # Load required packages and functions
 library(methodical)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Get locations of genes and their TSS and names of GEVE genes
 chlamy_genes_gr = readRDS("../genome_files/chlamy_genes_gr.rds")

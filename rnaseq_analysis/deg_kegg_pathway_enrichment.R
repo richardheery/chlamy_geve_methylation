@@ -2,8 +2,8 @@
 
 # Load required packages
 library(dplyr)
-source("../auxillary_scripts/ggplot_functions.R")
-source("../auxillary_scripts/enrichment_tests.R")
+source("../helper_scripts/ggplot_functions.R")
+source("../helper_scripts/enrichment_tests.R")
 
 # Import DESeq2 results
 deletion_vs_full_geve_deseq_results = data.frame(data.table::fread("deletion_vs_full_geve_deseq_results.tsv.gz"), row.names = 1)

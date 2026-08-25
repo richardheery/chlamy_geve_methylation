@@ -3,7 +3,7 @@
 # Load required packages and functions
 library(methodical)
 library(dplyr)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Load 5mC RSE and mask methylation of sites covered by < 10 reads or >= 350 reads
 chlamy_5mc_rse = HDF5Array::loadHDF5SummarizedExperiment("CC2937_T2T_5mC_rse")

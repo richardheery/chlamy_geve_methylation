@@ -3,7 +3,7 @@
 # Load required packages and functions
 library(methodical)
 library(dplyr)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Create a GRanges for whole chlamy genome and get location of GEVE
 chlamy_genome_CC2937 = Biostrings::readDNAStringSet("../genome_files/CC2937_T2T.fa")[1:17]

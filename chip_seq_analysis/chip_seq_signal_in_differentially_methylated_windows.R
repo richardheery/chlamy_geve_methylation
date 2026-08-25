@@ -4,8 +4,8 @@
 library(dplyr)
 library(ggplot2)
 library(GenomicRanges)
-source("../auxillary_scripts/bigwig_summarize_over_regions.R")
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/bigwig_summarize_over_regions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Load GRanges with GEVE and relicts and with centromeres
 geve_and_relicts_gr = rtracklayer::import.bed("../genome_files/GEVE_and_relicts_T2T.bed")

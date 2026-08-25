@@ -4,7 +4,7 @@
 library(parallel)
 
 # Load required packages
-source("../auxillary_scripts/sratools.R")
+source("../helper_scripts/sratools.R")
 
 # Load SRA metadata
 sra_metadata = data.table::fread("sra_metadata.txt")

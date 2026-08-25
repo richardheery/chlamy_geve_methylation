@@ -5,8 +5,8 @@ library(data.table)
 library(dplyr)
 library(ggplot2)
 library(GenomicRanges)
-source("../auxillary_scripts/ggplot_functions.R")
-source("../auxillary_scripts/modkit_functions.R")
+source("../helper_scripts/ggplot_functions.R")
+source("../helper_scripts/modkit_functions.R")
 
 # Load GRanges with GEVE
 geve_gr = rtracklayer::import.bed("../genome_files/GEVE_T2T.bed")

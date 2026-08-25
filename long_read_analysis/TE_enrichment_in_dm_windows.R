@@ -3,7 +3,7 @@
 # Load required packages
 library(dplyr)
 library(regioneR)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Create a GRanges for the Chlamy genome
 chlamy_genome_gr = GRanges(seqinfo(Biostrings::readDNAStringSet("../genome_files/CC2937_T2T.fa")))[1:17]

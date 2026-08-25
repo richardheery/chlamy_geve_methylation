@@ -5,8 +5,8 @@ library(dplyr)
 library(GenomicFeatures)
 library(rtracklayer)
 library(DESeq2)
-source("../auxillary_scripts/ggplot_functions.R")
-source("../auxillary_scripts/enrichment_tests.R")
+source("../helper_scripts/ggplot_functions.R")
+source("../helper_scripts/enrichment_tests.R")
 
 # Get locations of genes 
 chlamy_genes_gr = readRDS("../genome_files/chlamy_genes_gr.rds")

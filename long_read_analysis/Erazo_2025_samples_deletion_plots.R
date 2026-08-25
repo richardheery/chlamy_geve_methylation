@@ -4,7 +4,7 @@
 library(rtracklayer)
 library(GenomicAlignments)
 library(methodical)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Load GRanges with GEVE, expand by 50 kb at both ends and break GEVE into 1 kb windows
 geve_gr = rtracklayer::import.bed("../genome_files/GEVE_T2T.bed")

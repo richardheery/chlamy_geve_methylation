@@ -5,7 +5,7 @@ library(GenomicFeatures)
 library(rtracklayer)
 library(DESeq2)
 library(dplyr)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Get coordinates of GEVE and the deletion
 geve_gr = import.bed("../genome_files/GEVE_T2T.bed")

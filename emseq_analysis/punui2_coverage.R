@@ -3,7 +3,7 @@
 # Load required packages and functions
 library(methodical)
 library(SummarizedExperiment)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Read in CC2937 T2T as a DNAStringSet
 chlamy_genome_CC2937 = Biostrings::readDNAStringSet("../genome_files/CC2937_T2T.fa")[1:17]

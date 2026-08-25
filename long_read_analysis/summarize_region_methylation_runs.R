@@ -5,7 +5,7 @@ library(rtracklayer)
 library(methodical)
 library(HDF5Array)
 library(dplyr)
-source("../auxillary_scripts/ggplot_functions.R")
+source("../helper_scripts/ggplot_functions.R")
 
 # Load GRanges for annotating chlamy genome
 geve_gr = import.bed("../genome_files/GEVE_T2T.bed")

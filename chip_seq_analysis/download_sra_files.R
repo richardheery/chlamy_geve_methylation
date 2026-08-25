@@ -3,7 +3,7 @@
 # "DNA cytosine methylation suppresses meiotic recombination at the sex-determining region"
 
 # Import SRA Toolkit functions
-source("../auxillary_scripts/sratools.R")
+source("../helper_scripts/sratools.R")
 
 ### Download files for PRJNA255778 (Lineage-specific chromatin signatures reveal a regulator of lipid metabolism in microalgae)
 
