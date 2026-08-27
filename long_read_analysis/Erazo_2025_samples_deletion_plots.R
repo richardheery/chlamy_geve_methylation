@@ -20,8 +20,6 @@ deletion_gr = rtracklayer::import.bed("../genome_files/GEVE_deletion_T2T.bed")
 
 # Load RSE for 5mC for original runs and liftover to T2T
 Erazo_2025_5mC_rse = HDF5Array::loadHDF5SummarizedExperiment("Erazo_2025_5mC_rse")
-chain = import.chain("../genome_files/Erazo_2025_to_T2T.chain", exclude = NA)
-Erazo_2025_5mC_rse = liftoverMethRSE(Erazo_2025_5mC_rse, chain, )
 
 # Mask methylation of CpGs covered by < 10 reads 
 assay(Erazo_2025_5mC_rse, 1)[assay(Erazo_2025_5mC_rse, 2) < 10] = NA

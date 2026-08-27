@@ -81,10 +81,10 @@ erazo_bedmethyl_files_5mC = list.files("erazo_bedmethyl_files", pattern = "5mCG"
 Erazo_2025_coldata = data.frame(row.names = c("FirstRun",  "SecondRun", "ThirdRun"))
 
 # Create an RSE for erazo_bedmethyl_files_5mC
-Erazo_2025_5mc_rse = makeMethRSEFromInputFiles(meth_files = erazo_bedmethyl_files_5mC, 
+Erazo_2025_5mc_rse_contigs = makeMethRSEFromInputFiles(meth_files = erazo_bedmethyl_files_5mC, 
   seqnames_col = 1, start_col = 2, total_reads_col = 10, meth_reads_col = 12, 
   zero_based = T, collapse_strands = T, sequence_context = "CG", meth_sites = Erazo_2025_cpgs_gr, 
-  sample_metadata = Erazo_2025_coldata, hdf5_dir = "Erazo_2025_5mC_rse")
+  sample_metadata = Erazo_2025_coldata, hdf5_dir = "Erazo_2025_5mC_rse_contigs")
 
 # Get CpG sites for Erazo 2025
 Erazo_2025_apts_gr = extractMethSitesFromGenome(chlamy_genome_Erazo_2025, pattern = "AT", standard_seqs_only = F)
@@ -93,7 +93,14 @@ Erazo_2025_apts_gr = extractMethSitesFromGenome(chlamy_genome_Erazo_2025, patter
 erazo_bedmethyl_files_6mA = list.files("erazo_bedmethyl_files", pattern = "6mA", full.names = T)
 
 # Create an RSE for erazo_bedmethyl_files_5mC
-Erazo_2025_6ma_rse = makeMethRSEFromInputFiles(meth_files = erazo_bedmethyl_files_6mA, 
+Erazo_2025_6mA_rse_contigs = makeMethRSEFromInputFiles(meth_files = erazo_bedmethyl_files_6mA, 
   seqnames_col = 1, start_col = 2, total_reads_col = 10, meth_reads_col = 12, 
   zero_based = T, collapse_strands = T, sequence_context = "AT", meth_sites = Erazo_2025_apts_gr, 
-  sample_metadata = Erazo_2025_coldata[2:3, ], hdf5_dir = "Erazo_2025_6ma_rse")
+  sample_metadata = Erazo_2025_coldata[2:3, ], hdf5_dir = "Erazo_2025_6mA_rse_contigs")
+
+# Liftover Erazo RSEs to CC9937-T2T
+chain = rtracklayer::import.chain("../genome_files/Erazo_2025_to_T2T.chain", exclude = NA)
+Erazo_2025_5mC_rse_T2T = liftoverMethRSE(meth_rse = Erazo_2025_5mc_rse_contigs, chain = chain)
+Erazo_2025_6mA_rse_T2T = liftoverMethRSE(meth_rse = Erazo_2025_6mA_rse_contigs, chain = chain)
+HDF5Array::saveHDF5SummarizedExperiment(Erazo_2025_5mC_rse_T2T, "Erazo_2025_5mC_rse")
+HDF5Array::saveHDF5SummarizedExperiment(Erazo_2025_6mA_rse_T2T, "Erazo_2025_6mA_rse")

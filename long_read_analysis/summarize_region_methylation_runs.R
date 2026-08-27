@@ -38,14 +38,9 @@ host_promoters = chlamy_promoters_gr[grep("GEVE", chlamy_promoters_gr$gene_id, i
 
 # Load RSEs for 5mC and 6mA and mask methylation of sites covered by < 10 reads or >= 350 reads
 chlamy_cg_meth_rse = loadHDF5SummarizedExperiment("Erazo_2025_5mC_rse")
-chlamy_at_meth_rse = loadHDF5SummarizedExperiment("Erazo_2025_6ma_rse")
+chlamy_at_meth_rse = loadHDF5SummarizedExperiment("Erazo_2025_6mA_rse")
 assay(chlamy_cg_meth_rse, 1)[assay(chlamy_cg_meth_rse, 2) < 10 | assay(chlamy_cg_meth_rse, 2) >= 350] = NA
 assay(chlamy_at_meth_rse, 1)[assay(chlamy_at_meth_rse, 2) < 10 | assay(chlamy_at_meth_rse, 2) >= 350] = NA
-
-# Liftover RSEs to T2T assembly
-chain = rtracklayer::import.chain("../genome_files/Erazo_2025_to_T2T.chain", exclude = NA)
-chlamy_cg_meth_rse = liftoverMethRSE(chlamy_cg_meth_rse, chain)
-chlamy_at_meth_rse = liftoverMethRSE(chlamy_at_meth_rse, chain)
 
 # Subset RSEs for sites overlapping GEVE and not overlapping GEVE
 chlamy_cg_meth_rse_geve = subsetByOverlaps(chlamy_cg_meth_rse, geve_gr)

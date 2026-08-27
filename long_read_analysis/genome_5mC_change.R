@@ -29,7 +29,7 @@ genome_window_5mC$deletion_change =
   rowMeans(genome_window_5mC[c("chlamy_7A", "chlamy_18A")], na.rm = T) - 
   rowMeans(genome_window_5mC[c("chlamy_15A", "chlamy_8A")], na.rm = T)
 
-# Define hypermethylated windows as those with a methylation change > 0.2, hypomethylated windows with a change < -0.2
+# Define hypermethylated windows as those with a methylation change > 0.15, hypomethylated windows with a change < -0.15
 hypermethylated_windows = GRanges(row.names(genome_window_5mC)[which(genome_window_5mC$deletion_change > 0.15)])
 hypomethylated_windows = GRanges(row.names(genome_window_5mC)[which(genome_window_5mC$deletion_change < -0.15)])
 unchanged_windows = GRanges(row.names(genome_window_5mC)[which(abs(genome_window_5mC$deletion_change) < 0.05)])
