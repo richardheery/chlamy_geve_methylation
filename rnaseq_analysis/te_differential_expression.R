@@ -14,6 +14,8 @@ deletion_gr = rtracklayer::import.bed("../genome_files/GEVE_deletion_T2T.bed")
 # Get GTF with TEs and construct names from TE locus ID (transcript ID), subfamily (gene_id), family and class
 te_gtf = rtracklayer::import.gff2("../genome_files/CC2937_T2T.TEs_v3_8.bed.gtf")
 names(te_gtf) = paste(te_gtf$transcript_id, te_gtf$gene_id, te_gtf$family_id, te_gtf$class_id, sep = ":")
+geve_tes_gr = subsetByOverlaps(te_gtf, geve_gr, ignore.strand = T)
+non_geve_tes = names(subsetByOverlaps(te_gtf, geve_gr, ignore.strand = T, invert = T))
 
 # Filter for TEs at least 500 bp long and remove TEs overlapping the deletion
 te_gtf = te_gtf[width(te_gtf) >= 500]
@@ -76,6 +78,26 @@ chr15_te_volcano_plot = customize_ggplot_theme(chr15_te_volcano_plot,
   theme(aspect.ratio = 1)
 chr15_te_volcano_plot
 ggsave(plot = chr15_te_volcano_plot, "plots/chr15_de_tes_volcano_labelled.pdf", width = 9, height = 9, device = cairo_pdf)
+
+# Filter for significant results and add direction of change
+telocal_deletion_vs_full_results_significant = filter(telocal_deletion_vs_full_results[non_geve_tes, ], significant)
+telocal_deletion_vs_full_results_significant$direction = factor(ifelse(telocal_deletion_vs_full_results_significant$log2FoldChange > 0, "Upregulated", "Downregulated"))
+
+# Summarize the number of significant TEs by chromosome, methylation status and direction
+telocal_deletion_vs_full_results_significant_summary = summarise(group_by(telocal_deletion_vs_full_results_significant, chromosome, methylation_status, direction), count = n())
+telocal_deletion_vs_full_results_significant_summary$direction = factor(telocal_deletion_vs_full_results_significant_summary$direction)
+telocal_deletion_vs_full_results_significant_summary = tidyr::complete(ungroup(telocal_deletion_vs_full_results_significant_summary), 
+  chromosome, methylation_status, direction, fill = list(count = 0))
+telocal_deletion_vs_full_results_significant_summary = filter(telocal_deletion_vs_full_results_significant_summary, methylation_status %in% c("mCG", "Unmarked"))
+
+# Create a barplot with the number of DE TEs per chromosome
+de_te_barplot = ggplot(telocal_deletion_vs_full_results_significant_summary, aes(x = chromosome, y = count, fill = direction)) +
+  geom_col(position = position_dodge2(width = 1, preserve = "single", padding = 0.1), color = "black") 
+de_te_barplot = customize_ggplot_theme(de_te_barplot, facet = "methylation_status", x_labels = 1:17, xlab = "Chromosome",
+  ylab = "Number of TEs", fill_colors = c("#4B878BFF", "#D01C1FFF"),facet_nrow = 2, facet_scales = "fixed") + 
+  theme(strip.background = element_rect(fill = "grey95"), axis.text.x = element_text(size = 12))
+de_te_barplot
+ggsave(plot = de_te_barplot, "plots/de_te_barplot.pdf", width = 9, height = 9, device = cairo_pdf)
 
 ### Find differentially expressed TE subfamilies using TEcount output
 
